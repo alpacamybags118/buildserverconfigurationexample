@@ -1,0 +1,2 @@
+- include: getfacts.ansible
+- include: configuredependencies.ansible

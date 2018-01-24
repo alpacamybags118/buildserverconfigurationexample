@@ -1,0 +1,14 @@
+- hosts: win
+  tasks:
+    - name: Check to see if git is installed
+      win_stat: path='C:\\Program Files\\Git\\git-cmd.exe'
+      register: git_installed
+    - name: Download Git
+      win_get_url:
+         dest: 'c:\\temp\\Git-2.16.1-64-bit.exe'
+         url: 'https://github.com/git-for-windows/git/releases/download/v2.16.1.windows.1/Git-2.16.1-64-bit.exe'
+         force: no
+      when: not git_installed.stat.exists
+    - name: Install Git
+      raw: 'C:\\temp\\Git-2.16.1-64-bit.exe /VERYSILENT'
+      when: not git_installed.stat.exists

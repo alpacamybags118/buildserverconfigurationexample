@@ -1,0 +1,5 @@
+- hosts: win
+  tasks:
+  - name: Get Facts
+    setup:
+        fact_path: 'C:\\temp'
